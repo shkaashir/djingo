@@ -1,0 +1,12 @@
+.bingo-circ{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-color:rgb(139, 78, 201);
+}
+.translate-middle{
+    left: 50px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
