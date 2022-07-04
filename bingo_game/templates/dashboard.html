@@ -20,34 +20,7 @@
                     <th scope="col"></th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                        <div class="bingo-circ position-relative">
-                            <p class="position-absolute top-50 translate-middle">10</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bingo-circ position-relative">
-                            <p class="position-absolute top-50 translate-middle">10</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bingo-circ position-relative">
-                            <p class="position-absolute top-50 translate-middle">10</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bingo-circ position-relative">
-                            <p class="position-absolute top-50 translate-middle">10</p>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="bingo-circ position-relative">
-                            <p class="position-absolute top-50 translate-middle">10</p>
-                        </div>
-                    </td>
-                  </tr>
+                <tbody id="bingo-table-body">
                   <tr>
                     <td>
                         <div class="bingo-circ position-relative">
@@ -189,3 +162,7 @@
     </div>
 </div>
 {%endblock content%}
+
+{%block script%}
+<script src="{%static 'js/main.js'%}"></script>
+{%endblock script%}
