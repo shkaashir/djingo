@@ -7,17 +7,17 @@
 
 {%block content%}
 
-<div class="d-flex flex-column min-vh-100 min-vw-100">
+<div class="d-flex flex-column min-vh-85 min-vw-90">
     <div class="d-flex flex-grow-1 justify-content-center align-items-center">
         <div class="bg-success-vh-100">
             <table class="table">
                 <thead>
                   <tr>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
+                    <th scope="col" style="color:#B30E50;">B</th>
+                    <th scope="col" style="color:#FF3300 ;">I</th>
+                    <th scope="col" style="color:#FC4B54 ;">N</th>
+                    <th scope="col" style="color:#FD882D;">G</th>
+                    <th scope="col" style="color:#43C2C1 ;">0</th>
                   </tr>
                 </thead>
                 <tbody id="bingo-table-body">
@@ -159,6 +159,12 @@
                 </tbody>
               </table>
         </div>
+    </div>
+</div>
+
+<div id="example-div" class="border d-flex aligns-items-center justify-content-center">
+    <div class="bingo-circ position-relative">
+        <p class="position-absolute top-50 translate-middle" id="random-number">5</p>
     </div>
 </div>
 {%endblock content%}
