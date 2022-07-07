@@ -3,13 +3,19 @@ from channels.exceptions import StopConsumer
 import json
 from utils.random_bingo_number import generate_bingo_numbers
 import random
+from typing import List
 
 
 class BingoConsumer(AsyncConsumer):
 
-    bingo_initial_number: str = str(random.randint(1, 75))
+    bingo_list: List[int] = list(range(1, 76))
+
+    random.shuffle(bingo_list)
+
+    initial_bingo_number: int = bingo_list[0]
 
     async def websocket_connect(self, event):
+
 
         print("Connecting websocket and handshake about to complete.")
 
@@ -22,16 +28,28 @@ class BingoConsumer(AsyncConsumer):
             "type": "websocket.accept"
         })
 
-        message = {
-            "bingo_numbers": generate_bingo_numbers(),
-            "intial_number": self.bingo_initial_number
-        }
-
+        await self.send({
+            "type": "websocket.send",
+            "text": json.dumps(generate_bingo_numbers())
+        })
+        
         await self.channel_layer.group_send('bingo', {
             "type": "bingo.number",
-            "text": json.dumps(message)
+            "text": json.dumps({
+                "roulette_number": self.initial_bingo_number
+            })
         })
 
+        
+    async def websocket_receive(self, event):
+        await self.channel_layer.group_send(
+            'bingo',
+            {
+                "type": "bingo.number",
+                "text": random.randint(1, 75)
+            }
+        )
+    
 
     async def bingo_number(self, event):
         await self.send({
