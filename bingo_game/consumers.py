@@ -22,26 +22,16 @@ class BingoConsumer(AsyncConsumer):
             "type": "websocket.accept"
         })
 
-        await self.send({
-            "type": "websocket.send",
-            "text": json.dumps(generate_bingo_numbers())
-        })
-        
+        message = {
+            "bingo_numbers": generate_bingo_numbers(),
+            "intial_number": self.bingo_initial_number
+        }
+
         await self.channel_layer.group_send('bingo', {
             "type": "bingo.number",
-            "text": self.bingo_initial_number
+            "text": json.dumps(message)
         })
 
-        
-    async def websocket_receive(self, event):
-        await self.channel_layer.group_send(
-            'bingo',
-            {
-                "type": "bingo.number",
-                "text": random.randint(1, 75)
-            }
-        )
-    
 
     async def bingo_number(self, event):
         await self.send({
